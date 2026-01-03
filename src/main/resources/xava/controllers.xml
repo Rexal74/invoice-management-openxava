@@ -1,0 +1,50 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+
+<!DOCTYPE controllers SYSTEM "dtds/controllers.dtd">
+
+<!-- 
+Controllers doc: 
+https://www.openxava.org/OpenXavaDoc/docs/controllers_en.html
+
+Default controllers included in OpenXava (you can extend from them):
+https://github.com/openxava/openxava/blob/master/openxava/src/main/resources/xava/default-controllers.xml
+ 
+Examples of controllers (from test application):
+https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources/xava/controllers.xml
+-->
+
+<controllers>
+    
+    <!-- Environment variable:
+    <env-var name="invoice_DEFAULT_YEAR" value="2015"/> 
+    -->
+    
+    <!-- Session object:
+    <object name="invoice_activeYear" class="java.lang.Integer" value="2015" 
+    	    scope="global"/>    
+    -->
+    
+    <!-- Controller:
+    <controller name="Teacher">
+    	<extends controller="Typical"/>
+    	<action name="new" icon="library-plus" keystroke="Control N"
+        	class="actions.CreateTeacher">
+    	</action>
+	</controller>    
+    -->
+
+<controller name="Invoicing"> <!-- The same name as the entity -->
+
+    <extends controller="Typical"/> <!-- It has all the actions from Typical -->
+
+    <!-- Typical already has a 'delete' action, by using the same name we override it -->
+    <action name="delete"
+            mode="detail" confirm="true"
+            class="com.yourcompany.invoice.actions.InvoicingDeleteAction"
+            icon="delete"
+            available-on-new="false"
+            keystroke="Control D"/>
+
+</controller>
+
+</controllers>
